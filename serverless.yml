@@ -1,0 +1,24 @@
+service: app
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: provided
+
+plugins:
+  - ./vendor/bref/bref
+
+package:
+  exclude:
+    - node_modules/**
+    - public/storage
+    - storage/**
+    - tests/**
+    - .env
+
+functions:
+  hello:
+    handler: index.php
+    description: ''
+    layers:
+      - ${bref:layer.php-74}
